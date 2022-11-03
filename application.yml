@@ -1,0 +1,13 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://zipkin:localhost:9411
+    sender:
+      type: rabbit
+  rabbitmq:
+    host: rabbitmq:localhost

@@ -1,0 +1,48 @@
+server:
+  port: 8083
+
+spring:
+  config:
+    activate:
+      on-profile: default
+  application:
+    name: promociones
+  datasource:
+    url: jdbc:mysql://${promociones_db:localhost}:3306/promociones_db
+    username: root
+    password: 123123
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app:
+  environment:
+    promociones-host: ${promociones-host:localhost}
+    vuelos-host: ${vuelos-host:localhost}
+    hoteles-host: ${hoteles-host:localhost}
+
+--- # Testing configuration
+
+server:
+  port: ${random.int(5000,5100)}
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  application:
+    name: promociones
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: root
+    password: 123123
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+app:
+  environment:
+    promociones-host: none
